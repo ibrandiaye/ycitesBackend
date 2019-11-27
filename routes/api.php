@@ -16,3 +16,23 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+//Route For Citoyen
+Route::post('/enregistrer/citoyen', 'CitoyenController@store')
+    ->name('enregistrer.citoyen')
+    ->middleware('cors');
+
+//Route For Categorie
+Route::get('/liste-categories', 'CategorieController@getAllCategorie')
+    ->name('liste.categorie')
+    ->middleware('cors');
+
+//Route For Reclamation
+Route::post('/enregistrer/reclamation', 'ReclamationController@store')
+    ->name('enregistrer.reclamation')
+    ->middleware('cors');
+Route::get('/reclamation/citoyen/{id}', 'reclamationController@getReclamationForCitoyen')
+    ->name('reclamation.citoyen')
+    ->middleware('cors');
+Route::get('/reclamation/{id}', 'reclamationController@getOneReclamationForCitoyen')
+    ->name('une.reclamation')
+    ->middleware('cors');
