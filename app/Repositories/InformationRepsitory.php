@@ -16,5 +16,15 @@ class InformationRepsitory extends RessourceRepository{
     public function __construct(Informations $informations){
         $this->model = $informations;
     }
-
+    public function getAllInformatio(){
+    return Informations::with(['user'])
+        ->orderBy('id','desc')
+        ->limit(30)
+        ->get();
+}
+    public function getOneInformation($id){
+        return Informations::with(['user'])
+            ->where('id',$id)
+            ->first();
+    }
 }

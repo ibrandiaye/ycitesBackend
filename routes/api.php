@@ -36,3 +36,12 @@ Route::get('/reclamation/citoyen/{id}', 'reclamationController@getReclamationFor
 Route::get('/reclamation/{id}', 'reclamationController@getOneReclamationForCitoyen')
     ->name('une.reclamation')
     ->middleware('cors');
+
+//Route for Information
+Route::get('/information', 'InformationController@getAllInformationForApi')
+    ->name('trente.information')
+    ->middleware('cors');
+
+Route::get('/information/{id}', 'InformationController@getOneInformation')
+    ->name('une.information')
+    ->middleware('cors');

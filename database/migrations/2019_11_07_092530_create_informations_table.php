@@ -18,7 +18,7 @@ class CreateInformationsTable extends Migration
             $table->text('titre');
             $table->text('description');
             $table->text('image');
-            $table->unsignedBigInteger('id_user');
+            $table->unsignedBigInteger('user_id');
             $table->foreign('id_user')
                 ->references('id')
                 ->on('users');

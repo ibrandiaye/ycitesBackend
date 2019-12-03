@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\ReclamationRepository;
+use FarhanWazir\GoogleMaps\GMaps;
 use Illuminate\Http\Request;
 
 class ReclamationController extends Controller
@@ -19,7 +20,8 @@ class ReclamationController extends Controller
      */
     public function index()
     {
-        //
+      $reclamations = $this->reclamationRepository->listeReclamation();
+        return view('reclamation.index',compact('reclamations'));
     }
 
     /**
@@ -41,7 +43,7 @@ class ReclamationController extends Controller
     public function store(Request $request)
     {
         $reclamation = $this->reclamationRepository->store($request->all());
-        return $reclamation; //response()->json($reclamation);
+        return response()->json('ok');
     }
 
     /**
@@ -52,7 +54,8 @@ class ReclamationController extends Controller
      */
     public function show($id)
     {
-        //
+        $reclamation = $this->reclamationRepository->getById($id);
+        return view('reclamation.show', compact('reclamation'));
     }
 
     /**
@@ -88,6 +91,12 @@ class ReclamationController extends Controller
     {
         //
     }
+    public function valider($id){
+        $reclamation = $this->reclamationRepository->getById($id);
+        $reclamation->etat= true;
+        $reclamation->save();
+        return redirect()->back();
+    }
 
     // function for API
 
@@ -99,4 +108,5 @@ class ReclamationController extends Controller
         $reclamation = $this->reclamationRepository->oneReclamationForOneCitoyen($id);
         return response()->json($reclamation);
     }
+
 }

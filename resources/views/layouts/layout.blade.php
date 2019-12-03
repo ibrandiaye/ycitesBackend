@@ -21,12 +21,14 @@
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="{{ asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
     <!-- Daterange picker -->
-    <link rel="stylesheet" href="{{ asset('') }}plugins/daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" href="{{ asset('plugins/daterangepicker/daterangepicker.css') }}">
     <!-- summernote -->
-    <link rel="stylesheet" href="{{ asset('') }}plugins/summernote/summernote-bs4.css">
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.css') }}">
+    <!--  <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+   Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
+    @yield('script')
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -198,55 +200,38 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item">
-                        <a href="" class="nav-link">
-                            <i class="nav-icon fas fa-th"></i>
-
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-clone"></i>
                             <p>
-                                Gestion des Utilisateurs
-                                <i class="fas fa-angle-left right"></i>
-                                <span class="badge badge-info right"></span>
+                                Actualité
+                                <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
+                                <a href="{{route('informations.create')}}" class="nav-link">
+                                    <i class="fas fa-plus nav-icon"></i>
                                     <p>Ajouter</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>lister</p>
+                                <a href="{{ route('informations.index') }}" class="nav-link">
+                                    <i class="far fa-list-alt nav-icon"></i>
+                                    <p>Liste</p>
                                 </a>
                             </li>
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a href="" class="nav-link">
+                        <a href="{{ route('reclamations.index') }}" class="nav-link">
                             <i class="nav-icon fas fa-th"></i>
 
                             <p>
-                                Gestion des Produits
-                                <i class="fas fa-angle-left right"></i>
-                                <span class="badge badge-info right"></span>
+                                Reclamations
+
                             </p>
                         </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Ajouter</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>lister</p>
-                                </a>
-                            </li>
-                        </ul>
                     </li>
 
 
@@ -276,13 +261,14 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
+
 <!-- jQuery UI 1.11.4 -->
 <script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
     $.widget.bridge('uibutton', $.ui.button)
 </script>
+@yield('script')
 <!-- Bootstrap 4 -->
 <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <!-- ChartJS -->
@@ -309,5 +295,6 @@
 <script src="{{ asset('dist/js/pages/dashboard.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('dist/js/demo.js') }}"></script>
+
 </body>
 </html>

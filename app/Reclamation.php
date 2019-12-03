@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Reclamation extends Model
 {
     protected $fillable = [
-        'titre', 'description', 'latitude','longitude','etat','image','citoyen_id','categorie_id'
+        'titre', 'description', 'latitude','longitude','etat','image','citoyen_id','categorie_id','type'
     ];
 
     public function citoyen(){

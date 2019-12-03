@@ -26,6 +26,11 @@ class ReclamationRepository extends RessourceRepository{
             ->where('id',$id)
             ->first();
     }
+    public function listeReclamation(){
+        return Reclamation::with(['categorie','citoyen'])
+            ->orderBy('id','desc')
+            ->get();
+    }
 
 
 
