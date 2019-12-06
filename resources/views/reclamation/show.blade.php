@@ -36,6 +36,9 @@
                             <div class="col-12 col-sm-6">
                                 <h3 class="my-3">{{ $reclamation->titre }}</h3>
                                 <p>{{ $reclamation->description }}</p>
+                                @if($reclamation->audio!=null)
+                                <audio controls src="{{ $reclamation->audio }}" ></audio>
+                                @endif
                                 <hr>
                                 <h3>Information Citoyen</h3>
                                 <p><i class="far fa-user"></i> {{ $reclamation->citoyen->prenom }} {{ $reclamation->citoyen->nom }}</p>
