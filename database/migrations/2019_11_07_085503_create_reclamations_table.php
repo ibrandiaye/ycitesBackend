@@ -16,9 +16,9 @@ class CreateReclamationsTable extends Migration
         Schema::create('reclamations', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->text('titre')->nullable();
-            $table->text('description');
-            $table->float('latitude');
-            $table->float('longitude');
+            $table->text('description')->nullable();
+            $table->float('latitude')->nullable();
+            $table->float('longitude')->nullable();
             $table->boolean('etat');
             $table->longText('image')->nullable();
             $table->unsignedBigInteger('citoyen_id');

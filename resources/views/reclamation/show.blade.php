@@ -1,4 +1,4 @@
-@extends('welcome')
+@extends('layouts.layout')
 @section('content')
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -34,7 +34,7 @@
                             </div>
 
                             <div class="col-12 col-sm-6">
-                                <h3 class="my-3">{{ $reclamation->titre }}</h3>
+                                {{--<h3 class="my-3">{{ $reclamation->titre }}</h3>--}}
                                 <p>{{ $reclamation->description }}</p>
                                 @if($reclamation->audio!=null)
                                 <audio controls src="{{ $reclamation->audio }}" ></audio>

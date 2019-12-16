@@ -11,12 +11,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Enregistrer Categorie</h1>
+                        <h1 class="m-0 text-dark">Modifier {{ $citoyen->type }}</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Accueil</a></li>
-                            <li class="breadcrumb-item active">Enregistrer Categorie</li>
+                            <li class="breadcrumb-item active">Modifier {{ $citoyen->type }}</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -32,7 +32,7 @@
                 <!-- Default box -->
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title"><i class='fa fa-plus'></i> Ajouter Categorie</h3>
+                        <h3 class="card-title"><i class='fa fa-plus'></i> Modifier {{ $citoyen->type }}</h3>
 
                         <div class="card-tools">
                             <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -45,12 +45,26 @@
 
                         <div class='col-lg-4 offset-md-4'>
 
-                            {{ Form::open(array('url' => 'categories')) }}
+                            {{ Form::model($citoyen,array('route' => array('citoyen.update', $citoyen->id), 'method' => 'PUT','enctype'=>'multipart/form-data')) }}
 
                             <div class="form-group">
                                 {{ Form::label('nom', 'Nom') }}
-                                {{ Form::text('nom', '', array('class' => 'form-control','required' => 'true')) }}
+                                {{ Form::text('nom', null, array('class' => 'form-control','required' => 'true')) }}
                             </div>
+                            <div class="form-group">
+                                {{ Form::label('prenom', 'Prenom') }}
+                                {{ Form::text('prenom', null, array('class' => 'form-control','required' => 'true')) }}
+                            </div>
+                            <div class="form-group">
+                                {{ Form::label('telephone', 'Telephone') }}
+                                {{ Form::text('telephone', null, array('class' => 'form-control','required' => 'true')) }}
+                            </div>
+                            <div class="form-group">
+                                {{ Form::label('email', 'Email') }}
+                                {{ Form::text('email', null, array('class' => 'form-control','required' => 'true')) }}
+                            </div>
+                            <input type="hidden" value="{{ $citoyen->type }}" name="type">
+
                             {{ Form::submit('Enregitrer', array('class' => 'btn btn-primary')) }}
 
                             {{ Form::close() }}

@@ -7,12 +7,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Categories</h1>
+                        <h1 class="m-0 text-dark">Elu</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Accueil</a></li>
-                            <li class="breadcrumb-item active">Liste des Categories</li>
+                            <li class="breadcrumb-item active">Elu</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -28,7 +28,7 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Categories</h3>
+                                <h3 class="card-title">Elu</h3>
 
                                 <div class="card-tools">
                                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -38,45 +38,44 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <div class="col-lg-12 ">
-                                    <div class="panel-heading">Page {{ $informations->currentPage() }} of {{ $informations->lastPage() }}
-                                        <a href="{{route('categories.create') }}" class="btn btn-info float-right" style="margin-right: 3px;"><i class="fas fa-plus"></i></a></div>
+                                <div class="col-lg-10 offset-lg-1">
                                     <div class="table-responsive">
                                         <table class="table table-bordered table-striped">
 
                                             <thead>
                                             <tr>
-                                                <th>image</th>
-                                                <th>titre</th>
-                                                <th>description</th>
+                                                <th>photo</th>
+                                                <th>Prenom</th>
+                                                <th>Nom</th>
+                                                <th>Téléphone</th>
+                                                <th>Email</th>
+                                                <th>genre</th>
+                                                <th>fonction</th>
+                                                <th>profession</th>
                                                 <th>Action</th>
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            @foreach ($informations as $information)
-                                                <tr>
-                                                    <td><img src="/images/{{ $information->image }}" class=" img-fluid rounded-circle" style="max-width: 50px; max-height: 50px;"></td>
-                                                    <td>{{ $information->titre }}</td>
-                                                    <td>{!! Str::limit($information->description)  !!}</td>
-                                                    <td>
+                                            <tr>
+                                                <th><img src="/elu/{{ $elu->photo }}" class=" img-fluid rounded-circle" style="max-width: 50px; max-height: 50px;"></th>
+                                                <td>{{$elu->prenom}}</td>
+                                                <td>{{$elu->nom}}</td>
+                                                <td>{{$elu->telephone}}</td>
+                                                <td>{{$elu->email}}</td>
+                                                <td>{{$elu->genre}}</td>
+                                                <td>{{$elu->fonction}}</td>
+                                                <td>{{$elu->profession}}</td>
 
-                                                        {!! Form::open(['method' => 'DELETE', 'route' => ['informations.destroy', $information->id] ]) !!}
-                                                        <a href="{{ URL::to('informations/'.$information->id.'/edit') }}" class="btn btn-warning pull-left" ><i class="far fa-edit"></i></a>
-                                                        <a href="{{ route('informations.show', $information->id) }}" role="button" class="btn btn-info"><i class="fas fa-eye"></i></a>
-                                                        <button class="btn btn-danger border-left-0 border" type="submit">
-                                                            <i class="far fa-trash-alt"></i>
-                                                        </button>
-                                                        {!! Form::close() !!}
-                                                    </td>
-                                                </tr>
-                                            @endforeach
+                                                <td>
+
+
+                                                    <a href="{{ URL::to('elu/'.$elu->id.'/edit') }}" class="btn btn-warning pull-left" ><i class="far fa-edit"></i></a>
+                                                </td>
+                                            </tr>
                                             </tbody>
                                         </table>
                                     </div>
 
-                                    <div class="text-center">
-                                        {{ $informations->links() }}
-                                    </div>
                                 </div>
 
                             </div>

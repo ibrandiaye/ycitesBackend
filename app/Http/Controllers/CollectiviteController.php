@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Repositories\CitoyenRepository;
+use App\Repositories\CollectiviteRepository;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
-class CitoyenController extends Controller
+class CollectiviteController extends Controller
 {
-    protected $citoyenRepository;
-    public function __construct(CitoyenRepository $citoyenRepository){
-        $this->citoyenRepository = $citoyenRepository;
+
+    protected  $collectiviteRepository;
+
+    public function __construct(CollectiviteRepository $collectiviteRepository){
+        $this->collectiviteRepository = $collectiviteRepository;
     }
     /**
      * Display a listing of the resource.
@@ -19,13 +20,8 @@ class CitoyenController extends Controller
      */
     public function index()
     {
-        //
-    }
-    public function  getByType($type){
-        $citoyen = DB::table('citoyens')
-            ->where('type',$type)
-            ->first();
-        return view('citoyen.index',compact('citoyen','type'));
+        $collectivite = $this->collectiviteRepository->getById(1);
+        return view('collectivite.index',compact('collectivite'));
     }
 
     /**
@@ -35,7 +31,7 @@ class CitoyenController extends Controller
      */
     public function create()
     {
-        return view('citoyen.add');
+        return view('collectivite.add');
     }
 
     /**
@@ -46,7 +42,8 @@ class CitoyenController extends Controller
      */
     public function store(Request $request)
     {
-        $citoyen  = $this->citoyenRepository->store($request->all());
+        $collectivite = $this->collectiviteRepository->store($request->all());
+
         return  redirect()->route('collectivite.index');
     }
 
@@ -69,8 +66,8 @@ class CitoyenController extends Controller
      */
     public function edit($id)
     {
-        $citoyen = $this->citoyenRepository->getById($id);
-        return view('citoyen.edit',compact('citoyen'));
+        $collectivite = $this->collectiviteRepository->getById($id);
+        return view('collectivite.edit',compact('collectivite'));
     }
 
     /**
@@ -82,10 +79,10 @@ class CitoyenController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->citoyenRepository->update($id,$request->all());
-        return redirect()->route('citoyen.type',[$request->type])
+        $this->collectiviteRepository->update($id,$request->all());
+        return redirect()->route('collectivite.index')
             ->with('flash_message',
-                'personne '. $request->prenom.' '.  $request->nom.' modifié!');
+                'collectivite'. $request->designation.' updated!');
     }
 
     /**
@@ -97,11 +94,5 @@ class CitoyenController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function storeApi(Request $request)
-    {
-        $citoyen  = $this->citoyenRepository->store($request->all());
-        return response()->json($citoyen);
     }
 }

@@ -17,7 +17,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 //Route For Citoyen
-Route::post('/enregistrer/citoyen', 'CitoyenController@store')
+Route::post('/enregistrer/citoyen', 'CitoyenController@storeApi')
     ->name('enregistrer.citoyen')
     ->middleware('cors');
 
@@ -44,4 +44,9 @@ Route::get('/information', 'InformationController@getAllInformationForApi')
 
 Route::get('/information/{id}', 'InformationController@getOneInformation')
     ->name('une.information')
+    ->middleware('cors');
+
+// for Api
+Route::get('/elu', 'EluController@getEluApi')
+    ->name('une.elu')
     ->middleware('cors');

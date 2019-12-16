@@ -24,10 +24,14 @@
     <link rel="stylesheet" href="{{ asset('plugins/daterangepicker/daterangepicker.css') }}">
     <!-- summernote -->
     <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.css') }}">
-    <!--  <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-   Google Font: Source Sans Pro -->
+    {{--<link rel="stylesheet" href="{{ asset('css/style.css') }}">
+   Google Font: Source Sans Pro--}}
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.css"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"></script>
     @yield('script')
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -41,10 +45,7 @@
                 <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
             </li>
             <li class="nav-item d-none d-sm-inline-block">
-                <a href="index3.html" class="nav-link">Home</a>
-            </li>
-            <li class="nav-item d-none d-sm-inline-block">
-                <a href="#" class="nav-link">Contact</a>
+                <a href="{{ route('home') }}" class="nav-link">Acceuil</a>
             </li>
         </ul>
 
@@ -72,7 +73,7 @@
                     <a href="#" class="dropdown-item">
                         <!-- Message Start -->
                         <div class="media">
-                            <img src="dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+                            <img src="/dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
                             <div class="media-body">
                                 <h3 class="dropdown-item-title">
                                     Brad Diesel
@@ -88,7 +89,7 @@
                     <a href="#" class="dropdown-item">
                         <!-- Message Start -->
                         <div class="media">
-                            <img src="dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+                            <img src="/dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
                             <div class="media-body">
                                 <h3 class="dropdown-item-title">
                                     John Pierce
@@ -104,7 +105,7 @@
                     <a href="#" class="dropdown-item">
                         <!-- Message Start -->
                         <div class="media">
-                            <img src="dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+                            <img src="/dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
                             <div class="media-body">
                                 <h3 class="dropdown-item-title">
                                     Nora Silvester
@@ -125,7 +126,8 @@
                 <a class="dropdown-item" href="{{ route('logout') }}"
                    onclick="event.preventDefault();
                document.getElementById('logout-form').submit();">
-                    {{ __('Logout') }}
+                    {{-- __('Logout') --}}
+                    Déconnexion
                 </a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf
@@ -144,8 +146,8 @@
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
-        <a href="index3.html" class="brand-link">
-            <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+        <a href="{{ route('home') }}" class="brand-link">
+            <img src="/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
                  style="opacity: .8">
             <span class="brand-text font-weight-light">Ycity</span>
         </a>
@@ -155,7 +157,7 @@
             <!-- Sidebar user panel (optional) -->
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                 <div class="image">
-                    <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                    <img src="/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
                     <a href="#" class="d-block">{{ Auth::user()->name}}</a>
@@ -168,7 +170,7 @@
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
                     <li class="nav-item has-treeview menu-open">
-                        <a href="#" class="nav-link active">
+                        <a href="{{ route('home') }}" class="nav-link active">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
                                 Accueil
@@ -233,7 +235,47 @@
                             </p>
                         </a>
                     </li>
-
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-clone"></i>
+                            <p>
+                                Configuration
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{route('collectivite.index')}}" class="nav-link">
+                                    <i class="fas fa-plus nav-icon"></i>
+                                    <p>collectivite</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('citoyen.type',['Representant Etat']) }}" class="nav-link">
+                                    <i class="far fa-list-alt nav-icon"></i>
+                                    <p>Représentant Etat</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('citoyen.type',['Agent Etat']) }}" class="nav-link">
+                                    <i class="far fa-list-alt nav-icon"></i>
+                                    <p>Agent Etat</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('citoyen.type',['Responsable Suivi']) }}" class="nav-link">
+                                    <i class="far fa-list-alt nav-icon"></i>
+                                    <p>Responsable Suivi</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('elu.show',[1]) }}" class="nav-link">
+                                    <i class="far fa-list-alt nav-icon"></i>
+                                    <p>Elu</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
 
                 </ul>
             </nav>

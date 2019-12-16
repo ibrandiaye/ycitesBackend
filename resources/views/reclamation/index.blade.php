@@ -1,4 +1,4 @@
-@extends('welcome')
+@extends('layouts.layout')
 
 
 @section('content')
@@ -40,7 +40,7 @@
                                     <i class="fas fa-envelope bg-blue"></i>
                                     <div class="timeline-item">
                                         {{--<span class="time"><i class="fas fa-clock"></i> 12:05</span>--}}
-                                        <h3 class="timeline-header"><a href="#">{{ $reclamation->titre }}</a>  {{ $reclamation->categorie->nom }}</h3>
+                                        <h3 class="timeline-header"><a href="#"> {{ $reclamation->categorie->nom }}</a> </h3>
 
                                         <div class="timeline-body">
                                             <ul class="products-list product-list-in-card pl-2 pr-2">
@@ -49,7 +49,7 @@
                                                         <img src="{{ $reclamation->image }}" alt="Product Image" style="height: 110px; width: 75px;">
                                                     </div>
                                                     <div class="product-info">
-                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)" class="product-title">{{ $reclamation->titre }}
+                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)" class="product-title">{{ $reclamation->categorie->nom }}
                                                             @if($reclamation->etat)
                                                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="badge badge-success float-right">Approuvé</span></a>
                                                             @else

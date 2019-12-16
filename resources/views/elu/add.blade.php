@@ -11,12 +11,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Enregistrer Categorie</h1>
+                        <h1 class="m-0 text-dark">Enregistrer Elu</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Accueil</a></li>
-                            <li class="breadcrumb-item active">Enregistrer Categorie</li>
+                            <li class="breadcrumb-item active">Enregistrer Elu</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -32,7 +32,7 @@
                 <!-- Default box -->
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title"><i class='fa fa-plus'></i> Ajouter Categorie</h3>
+                        <h3 class="card-title"><i class='fa fa-plus'></i> Ajouter Elu</h3>
 
                         <div class="card-tools">
                             <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -45,12 +45,44 @@
 
                         <div class='col-lg-4 offset-md-4'>
 
-                            {{ Form::open(array('url' => 'categories')) }}
+                            {{ Form::open(array('url' => 'elu','enctype'=>'multipart/form-data')) }}
 
                             <div class="form-group">
                                 {{ Form::label('nom', 'Nom') }}
                                 {{ Form::text('nom', '', array('class' => 'form-control','required' => 'true')) }}
                             </div>
+                            <div class="form-group">
+                                {{ Form::label('prenom', 'Prenom') }}
+                                {{ Form::text('prenom', '', array('class' => 'form-control','required' => 'true')) }}
+                            </div>
+                            <div class="form-group">
+                                {{ Form::label('telephone', 'Telephone') }}
+                                {{ Form::text('telephone', '', array('class' => 'form-control','required' => 'true')) }}
+                            </div>
+                            <div class="form-group">
+                                {{ Form::label('email', 'Email') }}
+                                {{ Form::text('email', '', array('class' => 'form-control','required' => 'true')) }}
+                            </div>
+                            <div class="form-group">
+                                {{ Form::label('fonction', 'Fonction') }}
+                                {{ Form::text('fonction', '', array('class' => 'form-control','required' => 'true')) }}
+                            </div>
+                            <div class="form-group">
+                                {{ Form::label('profession', 'Profession') }}
+                                {{ Form::text('profession', '', array('class' => 'form-control','required' => 'true')) }}
+                            </div>
+                            <div class="form-group">
+                                {{ Form::label('image', 'Image') }}
+                                {!! Form::file('image', array('class' => 'form-control')) !!}
+                            </div>
+                            <div class="form-group">
+                            <label>Genre</label>
+                                <select class="form-control" name="genre" required="">
+                                    <option value="Homme">Homme</option>
+                                    <option value="Femme">Femme</option>
+                                </select>
+                            </div>
+
                             {{ Form::submit('Enregitrer', array('class' => 'btn btn-primary')) }}
 
                             {{ Form::close() }}

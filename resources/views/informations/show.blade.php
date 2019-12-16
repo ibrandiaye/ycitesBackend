@@ -1,4 +1,4 @@
-@extends('welcome')
+@extends('layouts.layout')
 @section('content')
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
